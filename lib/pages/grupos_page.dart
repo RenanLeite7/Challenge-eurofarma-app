@@ -62,17 +62,108 @@ class GruposPage extends StatelessWidget {
                     );
                   }).toList(),
                   SizedBox(height: 8.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Ação ao clicar para ver mais detalhes do grupo
-                    },
-                    child: Text('Ver Detalhes'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          // Ação ao clicar para ver mais detalhes do grupo
+                        },
+                        child: Text('Ver Detalhes'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Ação para acessar o chat do grupo
+                          _abrirChatDeGrupo(context, grupo['nome']);
+                        },
+                        child: Text('Abrir Chat'),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
           );
         },
+      ),
+      // Botão flutuante para criar novo grupo
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _criarGrupoCustomizado(context); // Função para criar um novo grupo
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Theme.of(context).colorScheme.primary, // Cor azul
+      ),
+    );
+  }
+
+  // Função para abrir o chat do grupo
+  void _abrirChatDeGrupo(BuildContext context, String nomeGrupo) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChatPage(nomeGrupo: nomeGrupo),
+      ),
+    );
+  }
+
+  // Função para criar um grupo customizado
+  void _criarGrupoCustomizado(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        String novoGrupo = '';
+        return AlertDialog(
+          title: Text('Criar Grupo Customizado'),
+          content: TextField(
+            decoration: InputDecoration(hintText: 'Nome do Grupo'),
+            onChanged: (value) {
+              novoGrupo = value; // Captura o nome do grupo inserido
+            },
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Fechar o diálogo
+              },
+              child: Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                if (novoGrupo.isNotEmpty) {
+                  // Implementar a lógica de criação de grupo customizado aqui
+                  // Exemplo: adicionar o novo grupo à lista de grupos
+                  grupos.add({
+                    'nome': novoGrupo,
+                    'participantes': ['Você'], // Adiciona o criador ao grupo
+                  });
+                }
+                Navigator.of(context).pop(); // Fechar o diálogo
+              },
+              child: Text('Criar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+// Página do Chat de Grupo
+class ChatPage extends StatelessWidget {
+  final String nomeGrupo;
+
+  ChatPage({required this.nomeGrupo});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Chat - $nomeGrupo'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+      ),
+      body: Center(
+        child: Text('Chat do $nomeGrupo em construção...'),
       ),
     );
   }
