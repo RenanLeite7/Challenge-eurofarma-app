@@ -1,16 +1,17 @@
-# eurofarma_app
+# SPRINT 4
+Aplicação em MVC da plataforma de treinamentos da Eurofarma (EUROLEARN)
 
-A new Flutter project.
+# LINK DO REPOSITÓRIO DA APLICAÇÃO WEB: 
+https://github.com/art5hur/sprint-4
 
-## Getting Started
+## Features
+- Dashboard principal (Colaboradores)
+- Dashboard RH
+- Cadastro de Treinamentos
+- Cadastro de Funcionários
+- Cadastro de Departamentos
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Integrantes
+- Arthur Miranda Santos
+- Renan Bandeira Leite
+- Thomas D’ávila Meyer Pflug
